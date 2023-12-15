@@ -17,6 +17,12 @@ jobs:
       - name: Setup MSBuild and add to PATH
         uses: microsoft/setup-msbuild@v1.1
 
+      - name: Restore NuGet packages
+        run: |
+            echo "Current directory: $PWD"
+            echo "GitHub workspace: $GITHUB_WORKSPACE"
+            nuget restore .\src\KPI_Lab2\KPI_Lab2.sln
+
       - name: Run MSBuild
         working-directory: .
         run: msbuild .\src\KPI_Lab2\KPI_Lab2.sln
