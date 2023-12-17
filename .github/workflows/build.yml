@@ -29,6 +29,8 @@ jobs:
           choco install vcpkg -y
           vcpkg install gtest
           vcpkg integrate install
+          echo 'export PATH=$PATH:C:/vcpkg/installed/x64-windows/bin' >> $GITHUB_ENV
+          echo 'export GTEST_ROOT=C:/vcpkg/installed/x64-windows' >> $GITHUB_ENV
         shell: pwsh
 
       - name: Run tests
