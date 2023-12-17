@@ -1,1 +1,25 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=13221016&assignment_repo_type=AssignmentRepo)
+
+#### Пономаренко Маргарита Альбертівна ІМ-11
+
+## Build & Run project
+
+Для збірки проекту, треба встановити поточку директорію на: `\src\KPI_Lab2` та прописати команду
+
+```bash
+  msbuild KPI_Lab2.sln
+```
+Запуск проекту відбувається з директорії: `\src\KPI_Lab2\x64\Debug`
+за допомогою команди:
+```bash
+  start KPI_Lab2.exe
+```
+Передаємо шлях, до файлу .txt, що містить в собі умову задачі та отримуємо вихідний файл `output.txt`, який зберігся в директорії, з якої було запущено проект.
+
+Демонстрація шляху до заготовленого файлу-прикладу з репозиторія: `../../../KPI_Lab2/KPI_Lab2/data.txt` 
+
+## Run Tests
+Запуск тестів відбувається з директорії: `\src\KPI_Lab2\x64\Debug`
+за допомогою команди:
+```bash
+  KPI_Lab2_Test.exe
+```
