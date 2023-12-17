@@ -1,0 +1,38 @@
+name: Build and Test
+
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  run-msbuild-vstest:
+    runs-on: windows-latest
+    name: Run MSBuild and Google Test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.1.0
+        id: checkout_code
+
+      - name: Setup MSBuild and add to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Restore NuGet packages
+        run: nuget restore .\src\KPI_Lab2\KPI_Lab2.sln
+
+      - name: Run MSBuild
+        working-directory: .
+        run: msbuild .\src\KPI_Lab2\KPI_Lab2.sln
+
+      - name: Install and configure Google Test
+        run: |
+          choco install vcpkg -y
+          vcpkg install gtest
+          vcpkg integrate install
+          echo 'export PATH=$PATH:C:/vcpkg/installed/x64-windows/bin' >> $GITHUB_ENV
+          echo 'export GTEST_ROOT=C:/vcpkg/installed/x64-windows' >> $GITHUB_ENV
+        shell: pwsh
+
+      - name: Run tests
+        working-directory: ${{ github.workspace }}
+        run: .\src\KPI_Lab2\x64\Debug\KPI_Lab2_Test.exe --gtest_break_on_failure
