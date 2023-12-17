@@ -13,8 +13,8 @@ protected:
 			fileName = "src/KPI_Lab2/KPI_Lab2/data.txt";
 		}
 		else {
-			/*fileName = "../../../KPI_Lab2/KPI_Lab2/data.txt";*/
-			fileName = "../../KPI_Lab2/KPI_Lab2/data.txt";
+			cerr << "RUN FROM else" << endl;
+			fileName = "../../../KPI_Lab2/KPI_Lab2/data.txt";
 		}
 		initData = readFromFile(fileName);
 		parsedData = Parse(initData);
@@ -24,6 +24,9 @@ protected:
 };
 
 TEST_F(AlgorithmTest, CheckFileExistence) {
+	char buffer[FILENAME_MAX];
+	_getcwd(buffer, sizeof(buffer));
+	std::cerr << "Current working directory: " << buffer << std::endl;
 	EXPECT_EQ(isFileExist(fileName), true);
 }
 
